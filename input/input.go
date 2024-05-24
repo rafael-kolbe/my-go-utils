@@ -1,22 +1,25 @@
+// Package input fornece funções para ler entrada do usuário com uma mensagem de prompt.
 package input
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/chzyer/readline"
 )
 
-func Input(msg string) string {
+// Lê a entrada do usuário exibindo uma mensagem de prompt.
+// A função retorna a string digitada pelo usuário.
+func Prompt(msg string) string {
 	rl, err := readline.New(msg)
 	if err != nil {
-		panic(fmt.Sprintf("Erro ao criar readline: %v", err))
+		log.Fatal("Erro ao criar readline: ", err)
 	}
 	defer rl.Close()
 
-	input, err := rl.Readline()
+	prompt, err := rl.Readline()
 	if err != nil {
-		panic(fmt.Sprintf("Erro ao ler o input: %v", err))
+		log.Fatal("Erro ao ler o prompt: ", err)
 	}
 
-	return input
+	return prompt
 }
